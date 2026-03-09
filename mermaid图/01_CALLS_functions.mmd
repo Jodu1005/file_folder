@@ -1,0 +1,69 @@
+%%{init: {'theme': 'base'}}%%
+graph TD
+    n9(["forward<br/><sub>6 conn</sub>"])
+    n5(["block<br/><sub>2 conn</sub>"])
+    n12(["is_finished<br/><sub>3 conn</sub>"])
+    n21(["run_model<br/><sub>3 conn</sub>"])
+    n14(["loop<br/><sub>3 conn</sub>"])
+    n15(["may_append<br/><sub>4 conn</sub>"])
+    n4(["allocate<br/><sub>4 conn</sub>"])
+    n13(["load_model<br/><sub>2 conn</sub>"])
+    n2(["add<br/><sub>2 conn</sub>"])
+    n3(["add_request<br/><sub>2 conn</sub>"])
+    n0(["__init__<br/><sub>24 conn</sub>"])
+    n18(["prepare_prefill<br/><sub>3 conn</sub>"])
+    n7(["capture_cudagraph<br/><sub>3 conn</sub>"])
+    n23(["set_context<br/><sub>3 conn</sub>"])
+    n10(["generate<br/><sub>5 conn</sub>"])
+    n19(["reset_context<br/><sub>2 conn</sub>"])
+    n22(["schedule<br/><sub>6 conn</sub>"])
+    n17(["prepare_decode<br/><sub>3 conn</sub>"])
+    n1(["_allocate_block<br/><sub>4 conn</sub>"])
+    n11(["get_context<br/><sub>4 conn</sub>"])
+    n16(["postprocess<br/><sub>3 conn</sub>"])
+    n20(["run<br/><sub>6 conn</sub>"])
+    n6(["call<br/><sub>4 conn</sub>"])
+    n8(["deallocate<br/><sub>3 conn</sub>"])
+    n24(["step<br/><sub>4 conn</sub>"])
+    n0 -->|CALLS| n13
+    n9 -->|CALLS| n11
+    n9 -->|CALLS| n11
+    n0 -->|CALLS| n11
+    n21 -->|CALLS| n11
+    n7 -->|CALLS| n23
+    n17 -->|CALLS| n23
+    n18 -->|CALLS| n23
+    n7 -->|CALLS| n19
+    n20 -->|CALLS| n19
+    n15 -->|CALLS| n5
+    n4 -->|CALLS| n5
+    n1 -->|CALLS| n2
+    n3 -->|CALLS| n2
+    n24 -->|CALLS| n22
+    n24 -->|CALLS| n16
+    n0 -->|CALLS| n14
+    n24 -->|CALLS| n6
+    n14 -->|CALLS| n6
+    n20 -->|CALLS| n18
+    n20 -->|CALLS| n17
+    n20 -->|CALLS| n21
+    n0 -->|CALLS| n7
+    n10 -->|CALLS| n3
+    n10 -->|CALLS| n24
+    n10 -->|CALLS| n12
+    n12 -->|CALLS| n12
+    n15 -->|CALLS| n1
+    n4 -->|CALLS| n1
+    n22 -->|CALLS| n4
+    n16 -->|CALLS| n8
+    n22 -->|CALLS| n15
+    n0 -->|CALLS| n0
+    n0 -->|CALLS| n0
+    n0 -->|CALLS| n0
+    n0 -->|CALLS| n0
+    n0 -->|CALLS| n0
+    n0 -->|CALLS| n0
+    n0 -->|CALLS| n0
+    n0 -->|CALLS| n0
+    classDef node fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    class n0,n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16,n17,n18,n19,n20,n21,n22,n23,n24 node

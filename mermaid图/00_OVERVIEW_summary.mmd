@@ -1,0 +1,38 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px'}}}%%
+graph TD
+    subgraph Nodes["📊 节点类型"]
+        nFunction["Function<br/>87 个"]:::Function
+        nClass["Class<br/>29 个"]:::Class
+        nFile["File<br/>27 个"]:::File
+        nCommunity["Community<br/>16 个"]:::Community
+        nProcess["Process<br/>20 个"]:::Process
+    end
+    subgraph Relations["🔗 关系类型"]
+        rDEFINES["DEFINES<br/>116 条"]:::rel_0
+        rSTEPINPROCESS["STEP_IN_PROCESS<br/>113 条"]:::rel_1
+        rCALLS["CALLS<br/>100 条"]:::rel_2
+        rMEMBEROF["MEMBER_OF<br/>86 条"]:::rel_3
+        rIMPORTS["IMPORTS<br/>29 条"]:::rel_4
+        rCONTAINS["CONTAINS<br/>26 条"]:::rel_5
+        rEXTENDS["EXTENDS<br/>7 条"]:::rel_6
+    end
+    subgraph Legend["📖 关系说明"]
+        l1["CALLS - 函数调用"]
+        l2["DEFINES - 定义关系"]
+        l3["EXTENDS - 继承关系"]
+        l4["MEMBER_OF - 成员归属"]
+        l5["IMPORTS - 导入依赖"]
+        l6["CONTAINS - 包含关系"]
+        l7["STEP_IN_PROCESS - 流程步骤"]
+    end
+
+    %% 节点样式
+    classDef Function fill:#e1f5fe,stroke:#333,stroke-width:2px
+    classDef Class fill:#fff9c4,stroke:#333,stroke-width:2px
+    classDef File fill:#f3e5f5,stroke:#333,stroke-width:2px
+    classDef Community fill:#e8f5e9,stroke:#333,stroke-width:2px
+    classDef Process fill:#fff3e0,stroke:#333,stroke-width:2px
+    classDef rel fill:#ffffff,stroke:#333,stroke-width:1px
+    class rel_0,rel_1,rel_2,rel_3,rel_4,rel_5,rel_6 rel
+    classDef legend fill:#fafafa,stroke:#999,stroke-width:1px,stroke-dasharray: 5 5
+    class l1,l2,l3,l4,l5,l6,l7 legend

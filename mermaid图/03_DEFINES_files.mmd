@@ -1,0 +1,82 @@
+%%{init: {'theme': 'base'}}%%
+graph TD
+    subgraph file0["📄 bench.py"]
+        f0_8541["main"]
+    end
+    subgraph file1["📄 block_manager.py"]
+        f1_4695["may_append"]
+        f1_2976["can_append"]
+        f1_8062["deallocate"]
+        f1_9724["allocate"]
+        f1_1094["can_allocate"]
+        f1_2972["_deallocate_block"]
+        f1_5458["_allocate_block"]
+        f1_1318["compute_hash"]
+    end
+    subgraph file2["📄 config.py"]
+        f2_7989["__post_init__"]
+    end
+    subgraph file3["📄 context.py"]
+        f3_510["reset_context"]
+        f3_2567["set_context"]
+        f3_8130["get_context"]
+    end
+    subgraph file4["📄 embed_head.py"]
+        f4_7036["forward"]
+        f4_7765["weight_loader"]
+    end
+    subgraph file5["📄 example.py"]
+        f5_8541["main"]
+    end
+    subgraph file6["📄 layernorm.py"]
+        f6_7036["forward"]
+        f6_4691["add_rms_forward"]
+        f6_5162["rms_forward"]
+        f6_7550["__init__"]
+    end
+    subgraph file7["📄 linear.py"]
+        f7_7765["weight_loader"]
+        f7_7036["forward"]
+        f7_7550["__init__"]
+        f7_7661["divide"]
+    end
+    subgraph file8["📄 llm_engine.py"]
+        f8_4471["generate"]
+        f8_8541["is_finished"]
+        f8_9323["step"]
+        f8_6619["add_request"]
+        f8_7041["exit"]
+        f8_7550["__init__"]
+    end
+    subgraph file9["📄 loader.py"]
+        f9_2401["load_model"]
+        f9_3872["default_weight_loader"]
+    end
+    subgraph file10["📄 model_runner.py"]
+        f10_5740["capture_cudagraph"]
+        f10_9094["run"]
+        f10_6968["run_model"]
+        f10_3468["prepare_sample"]
+        f10_3751["prepare_decode"]
+        f10_3365["prepare_prefill"]
+        f10_2792["prepare_block_tables"]
+        f10_5338["allocate_kv_cache"]
+    end
+    subgraph file11["📄 qwen3.py"]
+        f11_4424["compute_logits"]
+        f11_7036["forward"]
+        f11_7550["__init__"]
+    end
+    subgraph file12["📄 rotary_embedding.py"]
+        f12_6732["get_rope"]
+        f12_7036["forward"]
+        f12_7550["__init__"]
+        f12_4993["apply_rotary_emb"]
+    end
+    subgraph file13["📄 sampler.py"]
+        f13_7036["forward"]
+        f13_7550["__init__"]
+    end
+    subgraph file14["📄 sampling_params.py"]
+        f14_7989["__post_init__"]
+    end

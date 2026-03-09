@@ -1,0 +1,21 @@
+%%{init: {'theme': 'base'}}%%
+graph TD
+    n0(["ColumnParallelLinear"])
+    n1(["LLM"])
+    n2(["LLMEngine"])
+    n3(["LinearBase"])
+    n4(["MergedColumnParallelLinear"])
+    n5(["ParallelLMHead"])
+    n6(["QKVParallelLinear"])
+    n7(["ReplicatedLinear"])
+    n8(["RowParallelLinear"])
+    n9(["VocabParallelEmbedding"])
+    n1 -->|EXTENDS| n2
+    n7 -->|EXTENDS| n3
+    n0 -->|EXTENDS| n3
+    n4 -->|EXTENDS| n0
+    n6 -->|EXTENDS| n0
+    n8 -->|EXTENDS| n3
+    n5 -->|EXTENDS| n9
+    classDef cls fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    class n0,n1,n2,n3,n4,n5,n6,n7,n8,n9 cls
