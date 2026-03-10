@@ -1,0 +1,218 @@
+%%{init: {'theme': 'base'}}%%
+graph TD
+
+    %% 节点
+    n0["__init__"]
+    n1["load_model"]
+    n10["run"]
+    n11["may_append"]
+    n12["block"]
+    n13["allocate"]
+    n14["postprocess"]
+    n15["append_token"]
+    n16["_allocate_block"]
+    n17["add"]
+    n18["add_request"]
+    n19["step"]
+    n2["forward"]
+    n20["schedule"]
+    n21["preempt"]
+    n22["loop"]
+    n23["read_shm"]
+    n24["call"]
+    n25["write_shm"]
+    n26["exit"]
+    n27["warmup_model"]
+    n28["allocate_kv_cache"]
+    n29["prepare_block_tables"]
+    n3["get_context"]
+    n30["prepare_sample"]
+    n31["generate"]
+    n32["is_finished"]
+    n33["main"]
+    n34["reset"]
+    n35["compute_hash"]
+    n36["deallocate"]
+    n37["_deallocate_block"]
+    n38["can_allocate"]
+    n39["LLM"]
+    n4["run_model"]
+    n40["LLMEngine"]
+    n41["ReplicatedLinear"]
+    n42["LinearBase"]
+    n43["ColumnParallelLinear"]
+    n44["MergedColumnParallelLinear"]
+    n45["QKVParallelLinear"]
+    n46["RowParallelLinear"]
+    n47["ParallelLMHead"]
+    n48["VocabParallelEmbedding"]
+    n49["example.py"]
+    n5["capture_cudagraph"]
+    n50["bench.py"]
+    n51["sampling_params.py"]
+    n52["SamplingParams"]
+    n53["__post_init__"]
+    n54["llm.py"]
+    n55["config.py"]
+    n56["Config"]
+    n57["loader.py"]
+    n58["default_weight_loader"]
+    n59["context.py"]
+    n6["set_context"]
+    n60["Context"]
+    n61["sequence.py"]
+    n62["Sequence"]
+    n63["SequenceStatus"]
+    n64["__setstate__"]
+    n65["__getstate__"]
+    n66["last_block_num_tokens"]
+    n67["num_blocks"]
+    n68["num_cached_blocks"]
+    n69["completion_token_ids"]
+    n7["prepare_decode"]
+    n70["prompt_token_ids"]
+    n71["num_completion_tokens"]
+    n72["__getitem__"]
+    n73["__len__"]
+    n74["scheduler.py"]
+    n75["Scheduler"]
+    n76["__init__.py"]
+    n77["llm_engine.py"]
+    n78["block_manager.py"]
+    n79["model_runner.py"]
+    n8["prepare_prefill"]
+    n80["sampler.py"]
+    n81["qwen3.py"]
+    n82["activation.py"]
+    n83["attention.py"]
+    n84["embed_head.py"]
+    n85["layernorm.py"]
+    n86["linear.py"]
+    n87["rotary_embedding.py"]
+    n9["reset_context"]
+
+    %% 关系
+    n0 -->|CALLS| n1
+    n2 -->|CALLS| n3
+    n2 -->|CALLS| n3
+    n0 -->|CALLS| n3
+    n4 -->|CALLS| n3
+    n5 -->|CALLS| n6
+    n7 -->|CALLS| n6
+    n8 -->|CALLS| n6
+    n5 -->|CALLS| n9
+    n10 -->|CALLS| n9
+    n11 -->|CALLS| n12
+    n13 -->|CALLS| n12
+    n14 -->|CALLS| n15
+    n16 -->|CALLS| n17
+    n18 -->|CALLS| n17
+    n19 -->|CALLS| n20
+    n20 -->|CALLS| n21
+    n19 -->|CALLS| n14
+    n0 -->|CALLS| n22
+    n22 -->|CALLS| n23
+    n24 -->|CALLS| n25
+    n19 -->|CALLS| n24
+    n26 -->|CALLS| n24
+    n22 -->|CALLS| n24
+    n0 -->|CALLS| n27
+    n0 -->|CALLS| n28
+    n7 -->|CALLS| n29
+    n8 -->|CALLS| n29
+    n10 -->|CALLS| n8
+    n10 -->|CALLS| n7
+    n10 -->|CALLS| n30
+    n10 -->|CALLS| n4
+    n27 -->|CALLS| n10
+    n0 -->|CALLS| n5
+    n31 -->|CALLS| n18
+    n31 -->|CALLS| n19
+    n31 -->|CALLS| n32
+    n32 -->|CALLS| n32
+    n33 -->|CALLS| n31
+    n33 -->|CALLS| n31
+    n16 -->|CALLS| n34
+    n11 -->|CALLS| n35
+    n13 -->|CALLS| n35
+    n11 -->|CALLS| n16
+    n13 -->|CALLS| n16
+    n36 -->|CALLS| n37
+    n20 -->|CALLS| n38
+    n20 -->|CALLS| n13
+    n14 -->|CALLS| n36
+    n21 -->|CALLS| n36
+    n39 -->|EXTENDS| n40
+    n41 -->|EXTENDS| n42
+    n43 -->|EXTENDS| n42
+    n44 -->|EXTENDS| n43
+    n45 -->|EXTENDS| n43
+    n46 -->|EXTENDS| n42
+    n47 -->|EXTENDS| n48
+    n49 -.->|DEFINES| n33
+    n50 -.->|DEFINES| n33
+    n51 -.->|DEFINES| n52
+    n51 -.->|DEFINES| n53
+    n54 -.->|DEFINES| n39
+    n55 -.->|DEFINES| n56
+    n55 -.->|DEFINES| n53
+    n57 -.->|DEFINES| n1
+    n57 -.->|DEFINES| n58
+    n59 -.->|DEFINES| n60
+    n59 -.->|DEFINES| n9
+    n59 -.->|DEFINES| n6
+    n59 -.->|DEFINES| n3
+    n61 -.->|DEFINES| n62
+    n61 -.->|DEFINES| n63
+    n61 -.->|DEFINES| n64
+    n61 -.->|DEFINES| n65
+    n61 -.->|DEFINES| n15
+    n61 -.->|DEFINES| n12
+    n61 -.->|DEFINES| n66
+    n61 -.->|DEFINES| n67
+    n61 -.->|DEFINES| n68
+    n61 -.->|DEFINES| n69
+    n61 -.->|DEFINES| n70
+    n61 -.->|DEFINES| n71
+    n61 -.->|DEFINES| n32
+    n61 -.->|DEFINES| n72
+    n61 -.->|DEFINES| n73
+    n61 -.->|DEFINES| n0
+    n74 -.->|DEFINES| n75
+    n49 ==>|IMPORTS| n76
+    n50 ==>|IMPORTS| n76
+    n76 ==>|IMPORTS| n54
+    n76 ==>|IMPORTS| n51
+    n54 ==>|IMPORTS| n77
+    n61 ==>|IMPORTS| n51
+    n74 ==>|IMPORTS| n78
+    n74 ==>|IMPORTS| n61
+    n74 ==>|IMPORTS| n55
+    n79 ==>|IMPORTS| n80
+    n79 ==>|IMPORTS| n81
+    n79 ==>|IMPORTS| n61
+    n79 ==>|IMPORTS| n59
+    n79 ==>|IMPORTS| n57
+    n79 ==>|IMPORTS| n55
+    n77 ==>|IMPORTS| n79
+    n77 ==>|IMPORTS| n74
+    n77 ==>|IMPORTS| n61
+    n77 ==>|IMPORTS| n55
+    n77 ==>|IMPORTS| n51
+    n78 ==>|IMPORTS| n61
+    n81 ==>|IMPORTS| n82
+    n81 ==>|IMPORTS| n83
+    n81 ==>|IMPORTS| n84
+    n81 ==>|IMPORTS| n85
+    n81 ==>|IMPORTS| n86
+    n81 ==>|IMPORTS| n87
+    n84 ==>|IMPORTS| n59
+    n83 ==>|IMPORTS| n59
+
+    %% 样式
+    classDef func fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef cls fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef file fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    class n3,n21,n25,n4,n20,n13,n30,n69,n15,n58,n23,n60,n9,n73,n71,n62,n8,n38,n11,n52,n64,n28,n66,n5,n72,n65,n56,n10,n75,n29,n12,n7,n35,n37,n67,n0,n68,n26,n70,n17,n6,n31,n24,n19,n2,n32,n63,n16,n53,n27,n36,n1,n14,n34,n22,n18,n33 func
+    class n39,n43,n41,n46,n42,n45,n48,n44,n40,n47 cls
+    class n86,n54,n61,n51,n80,n59,n82,n74,n83,n57,n78,n79,n81,n50,n84,n76,n87,n55,n77,n49,n85 file

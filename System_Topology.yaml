@@ -1,0 +1,181 @@
+# ---------------------------------------------------------------------------
+# File: System_Topology.yaml
+# Purpose: Define UI-Agent module boundaries, dependencies, and responsibilities.
+# Target LLM Action: Use this to validate architecture when generating code.
+# ---------------------------------------------------------------------------
+
+system_context:
+  platform: Python UI Automation Framework
+  backend_language: Python 3.11+
+  project_name: UI-Agent
+  description: Intelligent UI automation agent using visual recognition and intent-based workflow execution
+components:
+- name: model_runner
+  file_path: nanovllm/engine/model_runner.py
+  layer: Data_Model_Layer
+  type: Data_Model_Layer
+  responsibilities:
+  - '解析与加载: read_shm'
+  - '执行逻辑: run'
+  - '执行逻辑: run_model'
+  - '数据模型: ModelRunner'
+  defines:
+    functions: 15
+    classes: 1
+  dependencies:
+  - config
+  - loader
+  - context
+  - sequence
+  - sampler
+  - qwen3
+  dependency_count: 6
+- name: qwen3
+  file_path: nanovllm/models/qwen3.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - '数据模型: Qwen3Model'
+  defines:
+    functions: 3
+    classes: 5
+  dependencies:
+  - linear
+  - layernorm
+  - attention
+  - rotary_embedding
+  - embed_head
+  - activation
+  dependency_count: 6
+- name: llm_engine
+  file_path: nanovllm/engine/llm_engine.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - 通用功能模块
+  defines:
+    functions: 6
+    classes: 1
+  dependencies:
+  - config
+  - sequence
+  - scheduler
+  - model_runner
+  - sampling_params
+  dependency_count: 5
+- name: scheduler
+  file_path: nanovllm/engine/scheduler.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - 通用功能模块
+  defines:
+    functions: 6
+    classes: 1
+  dependencies:
+  - config
+  - sequence
+  - block_manager
+  dependency_count: 3
+- name: __init__
+  file_path: nanovllm/__init__.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - 通用功能模块
+  defines:
+    functions: 0
+    classes: 0
+  dependencies:
+  - llm
+  - sampling_params
+  dependency_count: 2
+- name: example
+  file_path: example.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - 通用功能模块
+  defines:
+    functions: 1
+    classes: 0
+  dependencies:
+  - __init__
+  dependency_count: 1
+- name: bench
+  file_path: bench.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - 通用功能模块
+  defines:
+    functions: 1
+    classes: 0
+  dependencies:
+  - __init__
+  dependency_count: 1
+- name: embed_head
+  file_path: nanovllm/layers/embed_head.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - '解析与加载: weight_loader'
+  defines:
+    functions: 3
+    classes: 2
+  dependencies:
+  - context
+  dependency_count: 1
+- name: attention
+  file_path: nanovllm/layers/attention.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - 通用功能模块
+  defines:
+    functions: 4
+    classes: 1
+  dependencies:
+  - context
+  dependency_count: 1
+- name: block_manager
+  file_path: nanovllm/engine/block_manager.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - '管理器: BlockManager'
+  defines:
+    functions: 11
+    classes: 2
+  dependencies:
+  - sequence
+  dependency_count: 1
+- name: sequence
+  file_path: nanovllm/engine/sequence.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - 通用功能模块
+  defines:
+    functions: 14
+    classes: 2
+  dependencies:
+  - sampling_params
+  dependency_count: 1
+- name: llm
+  file_path: nanovllm/llm.py
+  layer: Utility_Module
+  type: Utility_Module
+  responsibilities:
+  - 通用功能模块
+  defines:
+    functions: 0
+    classes: 1
+  dependencies:
+  - llm_engine
+  dependency_count: 1
+architectural_constraints:
+- rule_1: 'Layer Isolation: Test modules MUST only import from production code, never vice versa.'
+  rule_2: 'Dependency Inversion: Business Logic Layer should depend on abstractions (interfaces) not concrete implementations.'
+  rule_3: 'Single Responsibility: Each module should have one clear purpose - validation, execution, or configuration.'
+  rule_4: 'Error Propagation: All exceptions must flow through the defined exception hierarchy, never use raw exceptions.'
